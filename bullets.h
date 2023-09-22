@@ -13,7 +13,10 @@ public:
 		this->coord = coord;
 		this->direction = direction;
 
-		this->coord.X++;
+		if (direction == RIGHT)
+			this->coord.X++;
+		else
+			this->coord.X--;
 
 			SetConsoleCursorPosition(hd, this->coord);
 			printf("-");
@@ -24,7 +27,16 @@ public:
 			SetConsoleCursorPosition(hd, this->coord);
 			printf(" ");
 
-			this->coord.X++;
+			if(direction == RIGHT)
+				this->coord.X++;
+			else
+				this->coord.X--;
+
+			if (this->coord.X <= 0)
+			{
+				range = 1;
+				return;
+			}
 
 			if (map[coord.Y][coord.X] == 'B')
 			{

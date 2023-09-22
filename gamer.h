@@ -11,6 +11,8 @@ public:
 		this->coord.X = coord.X;
 		this->coord.Y = coord.Y;
 
+		map[coord.Y][coord.X] = 'O';
+
 		SetConsoleCursorPosition(hd, coord);
 		printf("O");
 	}
@@ -31,12 +33,14 @@ public:
 		{
 			if (map[coord.Y][coord.X] != ' ') return;
 			
+			map[this->coord.Y][this->coord.X] = ' ';
 			SetConsoleCursorPosition(hd, this->coord);
 			printf(" ");
 
 			this->coord.X = coord.X;
 			this->coord.Y = coord.Y;
 
+			map[this->coord.Y][this->coord.X] = 'O';
 			SetConsoleCursorPosition(hd, coord);
 			printf("O");
 		}
@@ -88,7 +92,15 @@ public:
 				if (!bullets[index]) break;
 
 			if (!bullets[index])
-				bullets[index] = new Bullet(coord, direction);
+				if (direction == RIGHT || direction == LEFT)
+				{
+					bullets[index] = new Bullet(coord, direction);
+					previous_direction = direction;
+				}
+				else
+					bullets[index] = new Bullet(coord, previous_direction);
+			
+			
 		}
 	}
 
@@ -96,5 +108,6 @@ private:
 
 	COORD coord;
 	direct_t direction;
+	direct_t previous_direction;
 
 };

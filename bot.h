@@ -36,12 +36,12 @@ public:
 				if (direction == UP)
 				{
 					direction = DOWN;
-					coord.Y += 2;
+					coord.Y += 1;
 				}
 				else
 				{
 					direction = UP;
-					coord.Y -= 2;
+					coord.Y -= 1;
 				}
 			}
 
@@ -58,6 +58,8 @@ public:
 			printf("B");
 
 			speed_step = 0;
+
+
 
 		}
 	};

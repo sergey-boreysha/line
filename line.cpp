@@ -30,13 +30,21 @@ void conveyorBullets()
 	{
 		if (bullets[index])
 		{
-			if (bullets[index]->range > 1)
-			{
-				bullets[index]->step();
-				bullets[index]->range--;
-			}
+			//if(bullets[index]->getDirection() == RIGHT)
+				if (bullets[index]->range > 1)
+				{
+					bullets[index]->step();
+					bullets[index]->range--;
+				}
 
-			if (bullets[index] && bullets[index]->range == 1)
+			/*if (bullets[index]->getDirection() == LEFT)
+				if (bullets[index]->range > 1)
+				{
+					bullets[index]->step();
+					bullets[index]->range--;
+				}*/
+
+			if (bullets[index] && bullets[index]->range <= 1)
 			{
 				bullets[index]->lastClr();
 				delete bullets[index];
